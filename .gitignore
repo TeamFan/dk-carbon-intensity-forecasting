@@ -1,0 +1,11 @@
+data/raw/
+data/download.log
+results/run_forecast.log
+results/forecasts/st_*.csv.gz
+__pycache__/
+*.pyc
+report/*.aux
+report/*.log
+report/*.out
+report/*.toc
+results/run_schedule.log
