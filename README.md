@@ -8,8 +8,8 @@ The hourly CO₂ intensity of consumed electricity in both Danish bidding zones
 schedule deferrable data-centre load. Three questions are studied:
 
 1. **Forecasting.** How accurate are adaptive linear models, issued every hour
-   for 1–12 h and once a day for the next day (9–32 h), when every input must be
-   published before the issue time?
+   for 1–12 h and once a day for the next day (9–32 h), in a chronological
+   backtest that uses each input only after its assumed publication time?
 2. **Uncertainty.** Are Gaussian, quantile-regression and conformal predictive
    intervals calibrated, also in the high-intensity hours a scheduler cares about?
 3. **Decisions.** How much of the attainable emission reduction does a flexible
@@ -23,9 +23,9 @@ schedule deferrable data-centre load. Three questions are studied:
 | Day-ahead MAE, diurnal persistence (g CO₂/kWh) | 47.9 | 27.3 |
 | Day-ahead MAE, adaptive ARX by recursive least squares | **27.5** (−43%) | **18.2** (−33%) |
 | Day-ahead MAE, gradient-boosted trees (monthly refit) | 29.3 | 17.6 |
-| 90% interval coverage: Gaussian / quantile regression / QR + adaptive conformal | 89.4 / 88.5 / **90.0** % | 90.7 / 83.7 / **90.5** % |
+| Pooled coverage of the nominal 90% interval: Gaussian / quantile regression / QR + adaptive conformal | 89.4 / 88.5 / **90.0** % | 90.7 / 83.7 / **90.5** % |
 | same, hours in the top quintile of the forecast | 85.2 / 91.4 / 92.3 % | 85.5 / 89.4 / 91.0 % |
-| Share of the perfect-information CO₂ reduction realised by scheduling (persistence → adaptive ARX) | 17% → **65%** | 19% → **67%** |
+| Simulated scheduling: share of the perfect-information reduction in accounted CO₂ (persistence → adaptive ARX) | 17% → **65%** | 19% → **67%** |
 | Fleet of 30 sites: energy of a single-envelope plan that sites cannot deliver | 7.6% | 7.8% |
 
 * The adaptive ARX model is significantly better than diurnal persistence in
@@ -34,7 +34,7 @@ schedule deferrable data-centre load. Three questions are studied:
   product the trees are more accurate at every horizon.
 * A Gaussian distribution with recursive variance is calibrated on average but
   covers only about 85% in high-intensity hours; quantile regression with an
-  adaptive conformal correction keeps nominal average coverage and about 91–92%
+  adaptive conformal correction gives pooled coverage of 90.0–90.5% and about 91–92%
   in those hours.
 * Scheduling 6 MWh of deferrable daily load on the adaptive forecast cuts the
   emissions of that energy by 25.9% (DK1) and 23.4% (DK2) relative to uniform
